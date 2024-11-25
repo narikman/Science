@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSort</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1 class="title">EcoSort</h1>
+        </header>
+
+        <div class="main-content">
+            <div class="buttons-container">
+                <button class="btn" onclick="openWhatIsIt()">
+                    <img class="btn-img" src="https://w7.pngwing.com/pngs/765/504/png-transparent-question-mark-sign-question-mark-white-computer-icons-question-mark-miscellaneous-white-text-thumbnail.png" alt="Question Mark">
+                    <span>Find Out What It Is</span>
+                </button>
+                <button class="btn" onclick="openMap()">
+                    <img class="btn-img" src="https://w7.pngwing.com/pngs/561/324/png-transparent-location-address-position-linear-icon-location-address-position.png" alt="Location">
+                    <span>Find the Nearest Place</span>
+                </button>
+                <button class="btn" onclick="openAboutUs()">
+                    <img class="btn-img" src="https://png.pngtree.com/png-vector/20190130/ourmid/pngtree-hand-drawn-cartoon-standing-pensive-fashion-young-man-element-paintedcartoonstandingmeditationfashionyoung-men-png-image_636351.jpg" alt="About Us">
+                    <span>About Us</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section (Initially hidden) -->
+    <div class="section map-section" id="mapSection">
+        <div class="section-content">
+            <img class="section-img" src="https://ru.maps-kazakhstan.com/img/0/%D0%90%D1%81%D1%82%D0%B0%D0%BD%D0%B0-%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D1%82%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%BA%D0%B0%D1%80%D1%82%D0%B5.jpg" alt="Map">
+            <button class="back-btn" onclick="closeMap()">Back</button>
+        </div>
+    </div>
+
+    <!-- What is it Section (Initially hidden) -->
+    <div class="section what-is-it-section" id="whatIsItSection">
+        <div class="section-content">
+            <img class="section-img" src="https://lh4.googleusercontent.com/proxy/2uSQMosu-kgyKL1xg197SU-MY4gjqUBlFlIc73V7gjZrDPBj1XLbOu_aXevkSs3LmriyaHMkjBkRlhSHdsl-os3RoB0V55hO" alt="What is EcoSort?">
+            <button class="back-btn" onclick="closeWhatIsIt()">Back</button>
+        </div>
+    </div>
+
+    <!-- About Us Section (Initially hidden) -->
+    <div class="section about-us-section" id="aboutUsSection">
+        <div class="section-content">
+            <img class="section-img" src="https://d112y698adiu2z.cloudfront.net/photos/production/software_thumbnail_photos/002/393/686/datas/medium.png" alt="About Us">
+            <p class="about-text">ᴡᴇ ᴀʀᴇ ᴀ ᴡᴀsᴛᴇ sᴏʀᴛɪɴɢ ᴄᴏᴍᴘᴀɴʏ, ᴡᴇ ʙʀɪɴɢ ʙᴇɴᴇꜰɪᴛ ᴛᴏ ᴛʜᴇ ᴡʜᴏʟᴇ ᴡᴏʀʟᴅ, ᴄᴏᴍᴇ ᴡɪᴛʜ ᴜs!!!</p>
+            <button class="back-btn" onclick="closeAboutUs()">Back</button>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
