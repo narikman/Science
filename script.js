@@ -1,3 +1,4 @@
+
 // Функции для перехода между секциями
 function openWhatIsIt() {
     document.querySelector('.app-container').style.display = 'none';
@@ -31,22 +32,32 @@ function closeAboutUs() {
 
 // Использование OpenAI API для классификации предмета
 async function classifyItem(itemName) {
-    const response = await fetch('https://api.openai.com/v1/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer YOUR_OPENAI_API_KEY'  // Замените на ваш API ключ
-        },
-        body: JSON.stringify({
-            model: 'gpt-4', 
-            prompt: `Classify this item into categories such as paper, plastic, glass, or other: "${itemName}"`,
-            max_tokens: 60
-        })
-    });
+    try {
+        const response = await fetch('https://api.openai.com/v1/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer YOUR_OPENAI_API_KEY'  // Замените на ваш API ключ
+            },
+            body: JSON.stringify({
+                model: 'gpt-4', 
+                prompt: `Classify this item into categories such as paper, plastic, glass, or other: "${itemName}"`,
+                max_tokens: 60
+            })
+        });
 
-    const data = await response.json();
-    const classification = data.choices[0].text.trim();
-    return classification;
+        const data = await response.json();
+        if (response.ok) {
+            const classification = data.choices[0].text.trim();
+            return classification;
+        } else {
+            console.error('Error from API:', data);
+            return "Error: Could not classify the item.";
+        }
+    } catch (error) {
+        console.error('Fetch error:', error);
+        return "Error: Could not connect to the classification service.";
+    }
 }
 
 // Основная функция для определения типа предмета
