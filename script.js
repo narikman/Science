@@ -37,7 +37,7 @@ async function classifyItem(itemName) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer YOUR_OPENAI_API_KEY'  // Замените на ваш API ключ
+                'Authorization': 'Bearer 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'  // Замените на ваш API ключ
             },
             body: JSON.stringify({
                 model: 'gpt-4', 
