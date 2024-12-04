@@ -1,4 +1,3 @@
-
 // Функции для перехода между секциями
 function openWhatIsIt() {
     document.querySelector('.app-container').style.display = 'none';
@@ -20,57 +19,34 @@ function closeMap() {
     document.getElementById('mapSection').style.display = 'none';
 }
 
-function openAboutUs() {
-    document.querySelector('.app-container').style.display = 'none';
-    document.getElementById('aboutUsSection').style.display = 'block';
-}
+// Логика для перемещения изображения (по аналогии с Google картами)
+document.addEventListener('DOMContentLoaded', function () {
+    const mapImage = document.querySelector('.map-frame');
+    const mapContainer = document.querySelector('.map-container');
 
-function closeAboutUs() {
-    document.querySelector('.app-container').style.display = 'flex';
-    document.getElementById('aboutUsSection').style.display = 'none';
-}
+    let isDragging = false;
+    let startX, startY;
 
-// Использование OpenAI API для классификации предмета
-async function classifyItem(itemName) {
-    try {
-        const response = await fetch('https://api.openai.com/v1/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer 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'  // Замените на ваш API ключ
-            },
-            body: JSON.stringify({
-                model: 'gpt-4', 
-                prompt: `Classify this item into categories such as paper, plastic, glass, or other: "${itemName}"`,
-                max_tokens: 60
-            })
-        });
+    mapImage.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - mapImage.offsetLeft;
+        startY = e.pageY - mapImage.offsetTop;
+        mapContainer.style.cursor = 'grabbing';
+    });
 
-        const data = await response.json();
-        if (response.ok) {
-            const classification = data.choices[0].text.trim();
-            return classification;
-        } else {
-            console.error('Error from API:', data);
-            return "Error: Could not classify the item.";
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const x = e.pageX - startX;
+            const y = e.pageY - startY;
+
+            // Обновляем позицию изображения
+            mapImage.style.left = `${x}px`;
+            mapImage.style.top = `${y}px`;
         }
-    } catch (error) {
-        console.error('Fetch error:', error);
-        return "Error: Could not connect to the classification service.";
-    }
-}
+    });
 
-// Основная функция для определения типа предмета
-async function findOut() {
-    const item = document.getElementById('itemInput').value.trim().toLowerCase();
-    const result = document.getElementById('result');
-    
-    if (item === '') {
-        result.textContent = "Please enter an item!";
-        return;
-    }
-
-    // Используем API для классификации
-    const category = await classifyItem(item);
-    result.textContent = `This is a ${category} item!`;
-}
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        mapContainer.style.cursor = 'grab';
+    });
+});
