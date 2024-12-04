@@ -84,79 +84,29 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Стили секции What Is It */
-#whatIsItSection {
+/* Стили секции Map */
+#mapSection {
     display: none;
     text-align: center;
 }
 
-#whatIsItSection input {
-    padding: 10px;
-    margin-top: 20px;
-    width: 80%;
-    max-width: 400px;
-    font-size: 1.2em;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-.submit-btn {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.submit-btn:hover {
-    background-color: #45a049;
-}
-
-#whatIsItSection p {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-/* Стили секций Map и About Us */
-.section {
-    display: none;
+.map-container {
     width: 100%;
-    height: 100%;
-    text-align: center;
-    padding: 20px;
-}
-
-.section-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.section-img {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-    margin-bottom: 20px;
-}
-
-.about-text {
-    font-size: 1.5em;
-    font-weight: bold;
-    line-height: 1.6;
+    height: 500px;
+    overflow: hidden; /* Скрывает части изображения, выходящие за пределы контейнера */
+    position: relative;
 }
 
 .map-frame {
-    width: 100%;
-    max-width: 800px;
-    height: 450px;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    position: absolute; /* Добавлено абсолютное позиционирование */
+    width: 200%; /* Увеличиваем картинку */
+    height: 100%;
+    object-fit: cover;
+    cursor: grab;
+}
+
+.map-container:active .map-frame {
+    cursor: grabbing; /* Меняем курсор при перетаскивании */
 }
 
 /* Кнопки возврата */
@@ -175,8 +125,3 @@ body {
 .back-btn:hover {
     background-color: #45a049;
 }
-/* Предыдущий стиль, не изменяй */
-.hidden {
-    display: none;
-}
-
