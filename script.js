@@ -1,5 +1,6 @@
 // Функции для перехода между секциями
 function openWhatIsIt() {
+    console.log("Opening 'What is it' section");
     document.querySelector('.app-container').style.display = 'none';
     document.getElementById('whatIsItSection').style.display = 'block';
 }
@@ -10,6 +11,7 @@ function closeWhatIsIt() {
 }
 
 function openMap() {
+    console.log("Opening Map section");
     document.querySelector('.app-container').style.display = 'none';
     document.getElementById('mapSection').style.display = 'block';
 }
@@ -19,34 +21,36 @@ function closeMap() {
     document.getElementById('mapSection').style.display = 'none';
 }
 
-// Логика для перемещения изображения (по аналогии с Google картами)
-document.addEventListener('DOMContentLoaded', function () {
-    const mapImage = document.querySelector('.map-frame');
-    const mapContainer = document.querySelector('.map-container');
+function openAboutUs() {
+    console.log("Opening About Us section");
+    document.querySelector('.app-container').style.display = 'none';
+    document.getElementById('aboutUsSection').style.display = 'block';
+}
 
-    let isDragging = false;
-    let startX, startY;
+function closeAboutUs() {
+    document.querySelector('.app-container').style.display = 'flex';
+    document.getElementById('aboutUsSection').style.display = 'none';
+}
 
-    mapImage.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startX = e.pageX - mapImage.offsetLeft;
-        startY = e.pageY - mapImage.offsetTop;
-        mapContainer.style.cursor = 'grabbing';
-    });
+// Логика для определения типа предмета
+function findOut() {
+    const item = document.getElementById('itemInput').value.trim().toLowerCase();
+    const result = document.getElementById('result');
+    
+    if (item === '') {
+        result.textContent = "Please enter an item!";
+        return;
+    }
 
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            const x = e.pageX - startX;
-            const y = e.pageY - startY;
+    let category = "other";
 
-            // Обновляем позицию изображения
-            mapImage.style.left = `${x}px`;
-            mapImage.style.top = `${y}px`;
-        }
-    });
+    if (item.includes("plastic")) {
+        category = "plastic";
+    } else if (item.includes("glass")) {
+        category = "glass";
+    } else if (item.includes("paper")) {
+        category = "paper";
+    }
 
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-        mapContainer.style.cursor = 'grab';
-    });
-});
+    result.textContent = `This is a ${category} item!`;
+}
